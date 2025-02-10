@@ -1,4 +1,4 @@
-package com.miu.teo.book.cloudnativespring.catalogservice;
+package com.miu.teo.book.cloudnativespring.catalogservice.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
