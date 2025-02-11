@@ -24,3 +24,18 @@ kubectl port-forward service/catalog-service-expose-name 8000:8080
 kubectl delete deployment catalog-service
 kubectl delete service catalog-service-expose-name
 minikube stop
+
+
+### Chapter3
+#### spring stuff
+to access spring application properties:
+Environment interface, @Value, @ConfigurationProperties
+
+@ConfigurationProperties(prefix = "polar") requires Not registered via @EnableConfigurationProperties, marked as Spring component, or scanned via @ConfigurationPropertiesScan
+
+| VS |                @EnableConfigurationProperties                |                     @ConfigurationPropertiesScan                     |     
+|----|:------------------------------------------------------------:|:--------------------------------------------------------------------:|
+|    |    @EnableConfigurationProperties(PolarProperties.class)     |                     @ConfigurationPropertiesScan                     |
+|    |    Requires **manual** registration of properties classes    | **Automatically** scans for all **@ConfigurationProperties** classes |
+|    |  Common in **Spring Boot starters** and auto-configurations  |              More common in **application-level code**               |
+

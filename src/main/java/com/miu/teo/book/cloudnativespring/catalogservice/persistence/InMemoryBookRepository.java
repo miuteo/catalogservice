@@ -38,4 +38,9 @@ public class InMemoryBookRepository implements BookRepository {
     public void deleteByIsbn(String isbn) {
             books.remove(isbn);
     }
+
+    @Override
+    public int count() {
+        return books.size();
+    }
 }

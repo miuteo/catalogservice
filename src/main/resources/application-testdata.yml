@@ -1,0 +1,17 @@
+polar:
+  demo:
+    books:
+      - isbn: "1234567890"
+        title: "Spring Boot in Action"
+        author: "Craig Walls"
+        price: 39.99
+
+      - isbn: "0987654321"
+        title: "Effective Java"
+        author: "Joshua Bloch"
+        price: 45.50
+
+      - isbn: "9780132350884"
+        title: "Clean Code"
+        author: "Robert C. Martin"
+        price: 49.99
