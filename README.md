@@ -46,3 +46,7 @@ cli argument > jvm property > enviroment variable > property file > default(if a
  - env variable: $env:POLAR_ GREETING="Welcome to the catalog from ENV"; java -jar target/catalogservice-0.0.1-SNAPSHOT.jar
 
 http POST :9001/actuator/refresh
+
+```shell
+docker run -d --name polar-postgres -e POSTGRES_USER=user -e POSTGRES_PASSWORD=password -e POSTGRES_DB=polardb_catalog -p 5432:5432 postgres:14.4
+```
