@@ -9,6 +9,7 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.context.annotation.Import;
 import org.springframework.data.jdbc.core.JdbcAggregateTemplate;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -28,8 +29,9 @@ public class BookRepositoryJdbcTests {
 
 
     @Test
+    @Transactional
     void findBookByIsbn() {
-        var bookIsbn = "1234567890";
+        var bookIsbn = "1234567891";
         var book = Book.of(bookIsbn,"Title","Author",1.0);
 
         aggregateTemplate.insert(book);
