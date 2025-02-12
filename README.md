@@ -44,4 +44,5 @@ cli argument > jvm property > enviroment variable > property file > default(if a
  - cli: java -jar target/catalogservice-0.0.1-SNAPSHOT.jar --polar.greeting="Welcome to the catalog from CLI
  - jvm property:  java -Dpolar.greeting="Welcome to the catalog from JVM" -jar target/catalogservice-0.0.1-SNAPSHOT.jar
  - env variable: $env:POLAR_ GREETING="Welcome to the catalog from ENV"; java -jar target/catalogservice-0.0.1-SNAPSHOT.jar
- - 
+
+http POST :9001/actuator/refresh
