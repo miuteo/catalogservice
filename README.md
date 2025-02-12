@@ -56,3 +56,7 @@ docker run -d --name polar-postgres -e POSTGRES_USER=user -e POSTGRES_PASSWORD=p
 | Query method  | Raw SQL( JdbcTemplate)  | Custom Repositories | Auto-generated & JPL |
 |  Flexibility  |          High           |       Medium        |    Low (uses ORM)    |
 |    ORM dep    |            X            |          X          |         Yes          |
+
+
+*@DataJdbcTest* <- It provides a focused, lightweight testing setup by configuring only the necessary beans for interacting with a database while excluding unnecessary Spring Boot components like web controllers or security.
+it configures an in-memory database by default, but if you're using another external database, you can override this behaviour using *@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)*

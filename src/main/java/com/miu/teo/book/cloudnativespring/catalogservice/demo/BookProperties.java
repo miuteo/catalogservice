@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Profile;
 import java.util.List;
 
 @ConfigurationProperties(prefix = "polar.demo")
-@Profile("testdata")
+@Profile("demo")
 public record BookProperties(
         /**
          * demo books to be saved in memory database

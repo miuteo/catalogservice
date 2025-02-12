@@ -7,7 +7,7 @@ import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
 @Component
-@Profile("testdata")
+@Profile("demo")
 public class BookDataLoader {
     final BookRepository bookRepository;
     final BookProperties bookProperties;
@@ -19,6 +19,6 @@ public class BookDataLoader {
 
     @EventListener(ApplicationReadyEvent.class)
     public void loadData() {
-        bookProperties.books().forEach(bookRepository::save);
+        bookRepository.saveAll(bookProperties.books());
     }
 }

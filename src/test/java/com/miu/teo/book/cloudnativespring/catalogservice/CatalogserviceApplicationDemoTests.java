@@ -10,8 +10,8 @@ import org.springframework.test.context.ActiveProfiles;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@ActiveProfiles("testdata")
-class CatalogserviceApplicationTestdataTests {
+@ActiveProfiles({"demo","integration"})
+class CatalogserviceApplicationDemoTests {
 
     @Autowired
     private BookRepository bookRepository;

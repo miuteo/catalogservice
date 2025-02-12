@@ -21,14 +21,14 @@ class BookValidationTests {
 
     @Test
     void whenAllFieldsAreValid() {
-        var book = new Book(null,"1234567890","title","author",1.0, 0);
+        var book = new Book(null,"1234567890","title","author",1.0,null,null,0);
         Set<ConstraintViolation<Book>> violationSet = validator.validate(book);
         assertThat(violationSet).isEmpty();
     }
 
     @Test
     void whenISBNisInvalid() {
-        var book = new Book(null,"123456789a","title","author",1.0,0);
+        var book = new Book(null,"123456789a","title","author",1.0,null,null,0);
         Set<ConstraintViolation<Book>> violationSet = validator.validate(book);
         assertThat(violationSet).hasSize(1);
         assertThat(violationSet.iterator().next().getMessage()).contains("The ISBN format must be valid.");
