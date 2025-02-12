@@ -39,3 +39,9 @@ Environment interface, @Value, @ConfigurationProperties
 |    |    Requires **manual** registration of properties classes    | **Automatically** scans for all **@ConfigurationProperties** classes |
 |    |  Common in **Spring Boot starters** and auto-configurations  |              More common in **application-level code**               |
 
+precedence for overriding a spring property:
+cli argument > jvm property > enviroment variable > property file > default(if any)
+ - cli: java -jar target/catalogservice-0.0.1-SNAPSHOT.jar --polar.greeting="Welcome to the catalog from CLI
+ - jvm property:  java -Dpolar.greeting="Welcome to the catalog from JVM" -jar target/catalogservice-0.0.1-SNAPSHOT.jar
+ - env variable: $env:POLAR_ GREETING="Welcome to the catalog from ENV"; java -jar target/catalogservice-0.0.1-SNAPSHOT.jar
+ - 
