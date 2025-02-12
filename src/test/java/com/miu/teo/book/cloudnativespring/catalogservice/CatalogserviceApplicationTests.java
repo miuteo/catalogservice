@@ -24,7 +24,7 @@ class CatalogserviceApplicationTests {
 
     @Test
     void whenPostRequestThenBookCreated() {
-        var expectedBook = new Book(null, "1231231231", "Title", "Author", 9.90, null,null,0);
+        var expectedBook = new Book(null, "1231231231", "Title", "Author", 9.90, "publisher",null,null,0);
         webTestClient.post()
                 .uri("/books")
                 .accept(MediaType.APPLICATION_JSON)

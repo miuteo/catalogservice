@@ -32,7 +32,7 @@ public class BookRepositoryJdbcTests {
     @Transactional
     void findBookByIsbn() {
         var bookIsbn = "1234567891";
-        var book = Book.of(bookIsbn,"Title","Author",1.0);
+        var book = Book.of(bookIsbn,"Title","Author", "publisher",1.0);
 
         aggregateTemplate.insert(book);
 
