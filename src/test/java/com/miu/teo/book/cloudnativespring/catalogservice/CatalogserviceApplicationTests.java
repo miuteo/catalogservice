@@ -15,6 +15,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 @ActiveProfiles("integration")
 class CatalogserviceApplicationTests {
 
+    private static final String BOOK_URI = "/books";
+    private static final String ISBN_URI = BOOK_URI + "/{isbn}";
+
     @Autowired
     private WebTestClient webTestClient;
 
@@ -24,9 +27,10 @@ class CatalogserviceApplicationTests {
 
     @Test
     void whenPostRequestThenBookCreated() {
-        var expectedBook = new Book(null, "1231231231", "Title", "Author", 9.90, "publisher",null,null,0);
+        var isbn = "1231231231";
+        var expectedBook = new Book(null, isbn, "Title", "Author", 9.90, "publisher",null,null,0);
         webTestClient.post()
-                .uri("/books")
+                .uri(BOOK_URI)
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON)
                 .bodyValue(expectedBook)
@@ -37,6 +41,19 @@ class CatalogserviceApplicationTests {
                     assertThat(actualBook).isNotNull();
                     assertThat(actualBook.isbn()).isEqualTo(expectedBook.isbn());
                 });
+
+        webTestClient.delete()
+                .uri(ISBN_URI , isbn)
+                .accept(MediaType.APPLICATION_JSON)
+                .exchange()
+                .expectStatus().isNoContent();
+
+        webTestClient.get()
+                .uri(ISBN_URI , isbn)
+                .accept(MediaType.APPLICATION_JSON)
+                .exchange()
+                .expectStatus().isNotFound()
+                .expectBody();
     }
 
 }
