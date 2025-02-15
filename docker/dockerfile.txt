@@ -1,0 +1,6 @@
+FROM eclipse-temurin:17-jre
+COPY target/catalogservice-0.0.1-SNAPSHOT.jar catalogservice.jar
+#RUN apt-get update && apt-get install -y openjdk-17-jre
+#RUN apt-get install -y default-jre
+
+ENTRYPOINT ["java", "-jar" ,"catalogservice.jar"]
