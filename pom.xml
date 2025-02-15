@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.miu.teo.book.cloudnativespring</groupId>
     <artifactId>catalogservice</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.6-SNAPSHOT</version>
     <name>catalogservice</name>
     <description>catalogservice</description>
     <url/>
@@ -128,6 +128,23 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <image>
+                       <name>catalog-service:${project.version}</name>
+                        <env>
+                            <BP_JVM_VERSION>17.*</BP_JVM_VERSION> <!-- Equivalent to environment in Gradle -->
+                            <DB_HOSTNAME>polar-postgres</DB_HOSTNAME>
+                        </env>
+                    </image>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>build-image</goal> <!-- This goal repackages the JAR into an executable one -->
+                        </goals>
+                        <phase>package</phase> <!-- This binds the plugin execution to the 'package' phase -->
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
