@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.miu.teo.book.cloudnativespring</groupId>
     <artifactId>catalogservice</artifactId>
-    <version>0.0.6-SNAPSHOT</version>
+    <version>0.0.8-SNAPSHOT</version>
     <name>catalogservice</name>
     <description>catalogservice</description>
     <url/>

@@ -132,3 +132,5 @@ java -Djarmode=tools -jar .\catalogservice-0.0.1-SNAPSHOT.jar extract --layers -
 launcher option we can simply run the springboot app with java org.springframework.boot.loader.JarLauncher
 
 `FROM eclipse-temurin:17 AS builder`  <-staged build
+`docker compose -p catalog down` -> -p project name. down = stop and delete
+`docker inspect config-service`

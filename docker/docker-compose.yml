@@ -1,0 +1,44 @@
+name: nativespringcloud
+services:
+
+  catalog-service:
+    depends_on:
+      config-service:
+        condition: service_healthy  # Wait until config-service is healthy
+      polar-postgres:
+        condition: service_started
+    image: "catalog-service"
+    container_name: "catalog-service"
+    ports:
+      - 8080:9001
+    environment:
+      - BPL_JVM_THREAD_COUNT=50
+      - DB_HOSTNAME=polar-postgres
+      - CONFIG_HOSTNAME=config-service
+
+  polar-postgres:
+    image: "postgres:14.4"
+    container_name: "polar-postgres"
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=polardb_catalog
+
+  config-service:
+    container_name: "config-service"
+    image: "config-service"
+    ports:
+      - 8888:8888
+    healthcheck: # Ensure Config Service is running before other services start
+      test: ["CMD", "/workspace/health-check"]
+    environment:
+      THC_PATH: /actuator/health
+      THC_PORT: 8888
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+
+#Docker Compose configures both containers on the same network by default, so you don’t need to specify one explicitly, as you did previously.
