@@ -37,25 +37,25 @@ jobs:
           sarif_file: ${{ steps.scan.outputs.sarif }}
       - name: Build, unit tests and integration tests
         run: mvn clean verify
-    package:
-      name: Package and Publish
-      if: ${{github.ref == 'ref/heads/main'}}
-      needs: [build]
-      runs-on: ubuntu-22.04
-      permissions:
-        contents: read
-        packages: write
-        security-events: write
-      steps:
-        - name: Checkout source code
-          uses: actions/checkout@v3
-        - name: Set up JDK
-          uses: actions/setup-java@v3
-          with:
-            distribution: temurin
-            java-version: 17
-            cache: maven
-        - name: Build container image
-          run: |
-            chmod +x mvn
-            ./mvn spring-boot:build-image --image-name ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
+  package:
+    name: Package and Publish
+    if: ${{github.ref == 'ref/heads/main'}}
+    needs: [build]
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: read
+      packages: write
+      security-events: write
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v3
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: temurin
+          java-version: 17
+          cache: maven
+      - name: Build container image
+        run: |
+          chmod +x mvn
+          ./mvn spring-boot:build-image --image-name ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
