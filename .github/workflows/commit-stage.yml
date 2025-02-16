@@ -65,7 +65,7 @@ jobs:
         run: |
           export BP_IMAGE=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
           export BP_PUBLISH=true
-          mvn spring-boot:build-image -DskipTests
+          mvn spring-boot:build-image -DskipTests -Ddocker.image=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
 
 #      - name: Publish container image
 #        run: |
