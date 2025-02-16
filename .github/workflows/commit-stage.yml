@@ -57,5 +57,4 @@ jobs:
           cache: maven
       - name: Build container image
         run: |
-          chmod +x mvn
-          ./mvn spring-boot:build-image --image-name ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
+          mvn spring-boot:build-image --image-name ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
