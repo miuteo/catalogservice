@@ -3,7 +3,7 @@ on: push
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: miuteo/catalog-service
+  IMAGE_NAME: catalog-service
   VERSION: latest
 
 jobs:
@@ -68,5 +68,5 @@ jobs:
         run: docker image ls
       - name: Publish container image
         run: |
-          docker tag ${{ env.IMAGE_NAME }}:${{ env.VERSION }}  ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
-          docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
+          docker tag ${{ env.IMAGE_NAME }}:${{ env.VERSION }}  ${{ env.REGISTRY }}/${{ github.actor }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
+          docker push ${{ env.REGISTRY }}/${{ github.actor }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
