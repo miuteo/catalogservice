@@ -64,6 +64,8 @@ jobs:
       - name: Build container image
         run: |
           mvn package -DskipTests
+      - name: see dockers image
+        run: docker image ls
       - name: Publish container image
         run: |
           docker tag ${{ env.IMAGE_NAME }}:${{ env.VERSION }}  ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
