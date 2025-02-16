@@ -64,6 +64,7 @@ jobs:
       - name: Build container image and publish
         run: |
           export BP_IMAGE=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
+          export BP_PUBLISH=true
           mvn spring-boot:build-image -DskipTests
 
 #      - name: Publish container image
