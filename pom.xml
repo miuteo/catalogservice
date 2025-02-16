@@ -130,7 +130,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <image>
-                       <name>catalog-service:${project.version}</name>
+                       <name>catalog-service:latest</name>
                         <env>
                             <BP_JVM_VERSION>17.*</BP_JVM_VERSION> <!-- Equivalent to environment in Gradle -->
                             <DB_HOSTNAME>polar-postgres</DB_HOSTNAME>

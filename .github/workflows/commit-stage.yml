@@ -61,13 +61,10 @@ jobs:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Build container image and publish
+      - name: Build container image
         run: |
-          export BP_IMAGE=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
-          export BP_PUBLISH=true
-          mvn spring-boot:build-image -DskipTests -Ddocker.image=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
-
-#      - name: Publish container image
-#        run: |
-#          docker tag ${{ env.IMAGE_NAME }}:${{ env.VERSION }}  ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
-#          docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
+          mvn package -DskipTests
+      - name: Publish container image
+        run: |
+          docker tag ${{ env.IMAGE_NAME }}:${{ env.VERSION }}  ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
+          docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
