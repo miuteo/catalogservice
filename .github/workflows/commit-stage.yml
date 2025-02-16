@@ -40,7 +40,7 @@ jobs:
   package:
     name: Package and Publish
     if: ${{ github.ref == 'refs/heads/master' }}
-#    needs: [build]
+    needs: [build]
     runs-on: ubuntu-22.04
     permissions:
       contents: read
@@ -64,8 +64,6 @@ jobs:
       - name: Build container image
         run: |
           mvn package -DskipTests
-      - name: see dockers image
-        run: docker image ls
       - name: Publish container image
         run: |
           docker tag ${{ env.IMAGE_NAME }}:${{ env.VERSION }}  ${{ env.REGISTRY }}/${{ github.actor }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
