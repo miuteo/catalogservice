@@ -11,7 +11,10 @@ services:
     container_name: "catalog-service"
     ports:
       - 8080:9001
+      - 8001:8001
     environment:
+      - BPL_DEBUG_ENABLED=true
+      - BPL_DEBUG_PORT=8001
       - BPL_JVM_THREAD_COUNT=50
       - DB_HOSTNAME=polar-postgres
       - CONFIG_HOSTNAME=config-service
