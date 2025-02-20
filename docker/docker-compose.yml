@@ -7,12 +7,19 @@ services:
         condition: service_healthy  # Wait until config-service is healthy
       polar-postgres:
         condition: service_started
-    image: "catalog-service"
+    image: ${REGISTRY}/catalog-service
     container_name: "catalog-service"
     ports:
       - 8080:9001
       - 8001:8001
+    healthcheck: # Ensure Config Service is running before other services start
+      test: [ "CMD", "/workspace/health-check" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
     environment:
+      - THC_PATH=/actuator/health
+      - THC_PORT=9001
       - BPL_DEBUG_ENABLED=true
       - BPL_DEBUG_PORT=8001
       - BPL_JVM_THREAD_COUNT=50
@@ -31,7 +38,7 @@ services:
 
   config-service:
     container_name: "config-service"
-    image: "config-service"
+    image: ${REGISTRY}/config-service
     ports:
       - 8888:8888
     healthcheck: # Ensure Config Service is running before other services start
