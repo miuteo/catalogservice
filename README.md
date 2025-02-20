@@ -134,3 +134,40 @@ launcher option we can simply run the springboot app with java org.springframewo
 `FROM eclipse-temurin:17 AS builder`  <-staged build
 `docker compose -p catalog down` -> -p project name. down = stop and delete
 `docker inspect config-service`
+
+
+### Chapter 7 - Kubernetes fundamentals
+```shell
+minikube start --cpus 2 --memory 4g --driver docker --profile polar
+kubectl get nodes
+```
+NAME    STATUS   ROLES           AGE     VERSION
+polar   Ready    control-plane   2m47s   v1.32.0
+
+```shell
+kubectl config get-contexts
+```
+CURRENT   NAME    CLUSTER   AUTHINFO   NAMESPACE
+*         polar   polar     polar      default
+```shell
+kubectl config current-context
+```
+```shell
+kubectl config use-context polar
+```
+
+```shell
+minikube stop --profile polar
+minikube start --profile polar
+minikube delete --profile polar
+```
+```shell
+cd ./kubernetes
+kubectl apply -f services
+kubectl get pod
+kubectl logs deployment/polar-postgres
+kubectl delete -f services
+
+kubectl explain <object_name>
+kubectl api-resources
+```
