@@ -161,23 +161,6 @@ minikube stop --profile polar
 minikube start --profile polar
 minikube delete --profile polar
 ```
-```shell
-cd ./kubernetes
-kubectl apply -f services
-kubectl get pod
-kubectl logs deployment/polar-postgres
-kubectl delete -f services
-
-kubectl explain <object_name>
-kubectl api-resources
-```
-```shell
-minikube image load catalog-service --profile polar
-kubectl apply -f k8s/deployment.yml
-kubectl get all -l app=catalog-service
-kubectl logs deployment/catalog-service
-kubectl delete -f k8s/deployment.yml
-```
 ```ascii
 +---------------------------------------------------------------+
 |                Deployment                                     |
@@ -193,4 +176,24 @@ kubectl delete -f k8s/deployment.yml
 |  |  +-------------+  +--------------+  +--------------+   |   |
 |  +--------------------------------------------------------+   |
 +---------------------------------------------------------------+
+```
+```shell
+cd ./kubernetes
+kubectl apply -f services
+kubectl get pod
+kubectl logs deployment/polar-postgres
+kubectl delete -f services
+
+kubectl explain <object_name>
+kubectl api-resources
+```
+
+```shell
+minikube image load catalog-service --profile polar
+kubectl apply -f k8s/deployment.yml
+kubectl get all -l app=catalog-service
+kubectl logs deployment/catalog-service
+kubectl delete -f k8s/deployment.yml
+kubectl get svc -l app=catalog-service
+kubectl port-forward service/catalog-service 9001:80
 ```
