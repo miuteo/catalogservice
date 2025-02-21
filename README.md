@@ -171,3 +171,10 @@ kubectl delete -f services
 kubectl explain <object_name>
 kubectl api-resources
 ```
+```shell
+minikube image load catalog-service --profile polar
+kubectl apply -f k8s/deployment.yml
+kubectl get all -l app=catalog-service
+kubectl logs deployment/catalog-service
+kubectl delete -f k8s/deployment.yml
+```
