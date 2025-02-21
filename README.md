@@ -196,4 +196,5 @@ kubectl logs deployment/catalog-service
 kubectl delete -f k8s/deployment.yml
 kubectl get svc -l app=catalog-service
 kubectl port-forward service/catalog-service 9001:80
+kubectl delete pod <pod-name>
 ```
