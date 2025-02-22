@@ -1,0 +1,7 @@
+
+
+# Deploy
+k8s_yaml(['./deployment.yml', './service.yml'])
+
+# Manage
+k8s_resource('catalog-service', port_forwards=['9001'])
