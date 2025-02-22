@@ -146,6 +146,8 @@ polar   Ready    control-plane   2m47s   v1.32.0
 
 ```shell
 kubectl config get-contexts
+kubectl config use-context <context-name>
+ minikube delete --profile docker-desktop    
 ```
 CURRENT   NAME    CLUSTER   AUTHINFO   NAMESPACE
 *         polar   polar     polar      default
